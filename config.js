@@ -1,10 +1,12 @@
 require('dotenv').config();
 
+const plantId = process.env.PLANT_ID;
+
 module.exports = {
     authUrl: 'https://api.solarkcloud.com/oauth/token',
-    flowDataURL: 'https://api.solarkcloud.com/api/v1/plant/energy/124649/flow',
-    usageDataURL: 'https://api.solarkcloud.com/api/v1/plant/124649/realtime?id=124649',
-    consumptionDataURL: 'https://api.solarkcloud.com/api/v1/plant/energy/124649/generation/use',
+    flowDataURL: `https://api.solarkcloud.com/api/v1/plant/energy/${plantId}/flow`,
+    usageDataURL: `https://api.solarkcloud.com/api/v1/plant/${plantId}/realtime?id=${plantId}`,
+    consumptionDataURL: `https://api.solarkcloud.com/api/v1/plant/energy/${plantId}/generation/use`,
     logindata: {
       username: process.env.SOLARK_USERNAME,
       password: process.env.SOLARK_PASSWORD,
