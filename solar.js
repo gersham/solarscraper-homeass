@@ -1,8 +1,4 @@
-
 const axios = require('axios');
-const solar = require('./solar');
-
-// Import the config file
 const { authUrl, flowDataURL, usageDataURL, consumptionDataURL, logindata } = require('./config.js');
 
 let accessToken;
@@ -104,5 +100,4 @@ module.exports = {
     authenticate,
     fetchData,
     refreshAccessToken,
-    fetchData
   };

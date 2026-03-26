@@ -8,6 +8,6 @@
     "dotenv": "^17.3.1"
   },
   "scripts": {
-    "start": "yarn && node main.js"
+    "start": "node solarpower.js"
   }
 }
