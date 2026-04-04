@@ -48,13 +48,14 @@ async function fetchData() {
       let solarData = { ...r1data, ...r2data, ...r3data };
       
 
-      // Check for outage, the updateAt will be more than 10 minutes old
-      // Ex: updateAt: '2025-01-13T02:14:37Z'
+      // Check for outage: updateAt is stale, or all power values are zero
       const updateAt = new Date(solarData.updateAt);
       const now = new Date();
       const diffTime = Math.abs(now - updateAt);
       const diffMinutes = Math.ceil(diffTime / (1000 * 60));
-      if (diffMinutes > 10) {
+      const allZero = !solarData.soc && !solarData.pvPower && !solarData.loadOrEpsPower
+        && !solarData.battPower && !solarData.gridOrMeterPower && !solarData.genPower;
+      if (diffMinutes > 10 || allZero) {
         solarData.networkOutage = true;
       } else {
         solarData.networkOutage = false;
